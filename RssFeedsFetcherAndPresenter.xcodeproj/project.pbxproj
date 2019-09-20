@@ -16,6 +16,9 @@
 		72708DC82334C48F0091F6DD /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DC72334C48F0091F6DD /* UIStackView+Extensions.swift */; };
 		72708DCA2334C5320091F6DD /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DC92334C5320091F6DD /* ConfigurableView.swift */; };
 		72708DCC2334C7810091F6DD /* FeedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DCB2334C7810091F6DD /* FeedCellViewModel.swift */; };
+		72708DD52334D7290091F6DD /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DD42334D7290091F6DD /* DataFetcher.swift */; };
+		72708DD72334D8710091F6DD /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DD62334D8710091F6DD /* RequestBuilder.swift */; };
+		72708DDB2334D9C80091F6DD /* AllFeedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DDA2334D9C80091F6DD /* AllFeedsViewModel.swift */; };
 		EF0E94C78B9C9A3066981B99 /* Pods_RssFeedsFetcherAndPresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +36,9 @@
 		72708DC72334C48F0091F6DD /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		72708DC92334C5320091F6DD /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
 		72708DCB2334C7810091F6DD /* FeedCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellViewModel.swift; sourceTree = "<group>"; };
+		72708DD42334D7290091F6DD /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
+		72708DD62334D8710091F6DD /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		72708DDA2334D9C80091F6DD /* AllFeedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFeedsViewModel.swift; sourceTree = "<group>"; };
 		85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RssFeedsFetcherAndPresenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -90,9 +96,11 @@
 		72708DBB2334BDD80091F6DD /* AllFeeds */ = {
 			isa = PBXGroup;
 			children = (
+				72708DD92334D9B50091F6DD /* Controller */,
+				72708DD82334D9AF0091F6DD /* ViewModel */,
+				72708DD32334D7190091F6DD /* Models */,
 				72708DC22334C39D0091F6DD /* Protocols */,
 				72708DBF2334C1F60091F6DD /* Views */,
-				72708DA92334BCA00091F6DD /* AllFeedsViewController.swift */,
 			);
 			path = AllFeeds;
 			sourceTree = "<group>";
@@ -153,6 +161,31 @@
 				72708DC72334C48F0091F6DD /* UIStackView+Extensions.swift */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		72708DD32334D7190091F6DD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				72708DD42334D7290091F6DD /* DataFetcher.swift */,
+				72708DD62334D8710091F6DD /* RequestBuilder.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		72708DD82334D9AF0091F6DD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				72708DDA2334D9C80091F6DD /* AllFeedsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		72708DD92334D9B50091F6DD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				72708DA92334BCA00091F6DD /* AllFeedsViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		94B28DDFDC0D8FE289E7E1DA /* Pods */ = {
@@ -286,8 +319,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72708DDB2334D9C80091F6DD /* AllFeedsViewModel.swift in Sources */,
 				72708DAA2334BCA00091F6DD /* AllFeedsViewController.swift in Sources */,
 				72708DA82334BCA00091F6DD /* AppDelegate.swift in Sources */,
+				72708DD52334D7290091F6DD /* DataFetcher.swift in Sources */,
+				72708DD72334D8710091F6DD /* RequestBuilder.swift in Sources */,
 				72708DCC2334C7810091F6DD /* FeedCellViewModel.swift in Sources */,
 				72708DC82334C48F0091F6DD /* UIStackView+Extensions.swift in Sources */,
 				72708DCA2334C5320091F6DD /* ConfigurableView.swift in Sources */,
