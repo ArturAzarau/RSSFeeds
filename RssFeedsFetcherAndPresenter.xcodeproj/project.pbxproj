@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,11 @@
 		72708DAA2334BCA00091F6DD /* AllFeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DA92334BCA00091F6DD /* AllFeedsViewController.swift */; };
 		72708DAF2334BCA30091F6DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72708DAE2334BCA30091F6DD /* Assets.xcassets */; };
 		72708DB22334BCA30091F6DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72708DB02334BCA30091F6DD /* LaunchScreen.storyboard */; };
+		72708DC12334C2020091F6DD /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DC02334C2020091F6DD /* FeedCell.swift */; };
+		72708DC42334C3AB0091F6DD /* InitializableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DC32334C3AB0091F6DD /* InitializableView.swift */; };
+		72708DC82334C48F0091F6DD /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DC72334C48F0091F6DD /* UIStackView+Extensions.swift */; };
+		72708DCA2334C5320091F6DD /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DC92334C5320091F6DD /* ConfigurableView.swift */; };
+		72708DCC2334C7810091F6DD /* FeedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DCB2334C7810091F6DD /* FeedCellViewModel.swift */; };
 		EF0E94C78B9C9A3066981B99 /* Pods_RssFeedsFetcherAndPresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +28,11 @@
 		72708DAE2334BCA30091F6DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72708DB12334BCA30091F6DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		72708DB32334BCA30091F6DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72708DC02334C2020091F6DD /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		72708DC32334C3AB0091F6DD /* InitializableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializableView.swift; sourceTree = "<group>"; };
+		72708DC72334C48F0091F6DD /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
+		72708DC92334C5320091F6DD /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
+		72708DCB2334C7810091F6DD /* FeedCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellViewModel.swift; sourceTree = "<group>"; };
 		85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RssFeedsFetcherAndPresenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -62,6 +72,7 @@
 				72708DBB2334BDD80091F6DD /* AllFeeds */,
 				72708DBA2334BDA90091F6DD /* ApplicationDelegate */,
 				72708DBE2334BE000091F6DD /* Configuration */,
+				72708DC52334C4720091F6DD /* Extensions */,
 				72708DBD2334BDF80091F6DD /* LaunchScreen */,
 				72708DBC2334BDEE0091F6DD /* Resources */,
 			);
@@ -79,6 +90,8 @@
 		72708DBB2334BDD80091F6DD /* AllFeeds */ = {
 			isa = PBXGroup;
 			children = (
+				72708DC22334C39D0091F6DD /* Protocols */,
+				72708DBF2334C1F60091F6DD /* Views */,
 				72708DA92334BCA00091F6DD /* AllFeedsViewController.swift */,
 			);
 			path = AllFeeds;
@@ -108,13 +121,46 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		72708DBF2334C1F60091F6DD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				72708DC02334C2020091F6DD /* FeedCell.swift */,
+				72708DCB2334C7810091F6DD /* FeedCellViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		72708DC22334C39D0091F6DD /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				72708DC32334C3AB0091F6DD /* InitializableView.swift */,
+				72708DC92334C5320091F6DD /* ConfigurableView.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		72708DC52334C4720091F6DD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				72708DC62334C4830091F6DD /* UIKit */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		72708DC62334C4830091F6DD /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				72708DC72334C48F0091F6DD /* UIStackView+Extensions.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		94B28DDFDC0D8FE289E7E1DA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				3A854E1C02E64E6E44EA5040 /* Pods-RssFeedsFetcherAndPresenter.debug.xcconfig */,
 				11BAC3DCD026B981EA2B7420 /* Pods-RssFeedsFetcherAndPresenter.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -242,6 +288,11 @@
 			files = (
 				72708DAA2334BCA00091F6DD /* AllFeedsViewController.swift in Sources */,
 				72708DA82334BCA00091F6DD /* AppDelegate.swift in Sources */,
+				72708DCC2334C7810091F6DD /* FeedCellViewModel.swift in Sources */,
+				72708DC82334C48F0091F6DD /* UIStackView+Extensions.swift in Sources */,
+				72708DCA2334C5320091F6DD /* ConfigurableView.swift in Sources */,
+				72708DC42334C3AB0091F6DD /* InitializableView.swift in Sources */,
+				72708DC12334C2020091F6DD /* FeedCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
