@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		72708DA82334BCA00091F6DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DA72334BCA00091F6DD /* AppDelegate.swift */; };
-		72708DAA2334BCA00091F6DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DA92334BCA00091F6DD /* ViewController.swift */; };
-		72708DAD2334BCA00091F6DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72708DAB2334BCA00091F6DD /* Main.storyboard */; };
+		72708DAA2334BCA00091F6DD /* AllFeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DA92334BCA00091F6DD /* AllFeedsViewController.swift */; };
 		72708DAF2334BCA30091F6DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72708DAE2334BCA30091F6DD /* Assets.xcassets */; };
 		72708DB22334BCA30091F6DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72708DB02334BCA30091F6DD /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -17,8 +16,7 @@
 /* Begin PBXFileReference section */
 		72708DA42334BCA00091F6DD /* RssFeedsFetcherAndPresenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RssFeedsFetcherAndPresenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72708DA72334BCA00091F6DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		72708DA92334BCA00091F6DD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		72708DAC2334BCA00091F6DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		72708DA92334BCA00091F6DD /* AllFeedsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFeedsViewController.swift; sourceTree = "<group>"; };
 		72708DAE2334BCA30091F6DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72708DB12334BCA30091F6DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		72708DB32334BCA30091F6DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,14 +52,53 @@
 		72708DA62334BCA00091F6DD /* RssFeedsFetcherAndPresenter */ = {
 			isa = PBXGroup;
 			children = (
-				72708DA72334BCA00091F6DD /* AppDelegate.swift */,
-				72708DA92334BCA00091F6DD /* ViewController.swift */,
-				72708DAB2334BCA00091F6DD /* Main.storyboard */,
-				72708DAE2334BCA30091F6DD /* Assets.xcassets */,
-				72708DB02334BCA30091F6DD /* LaunchScreen.storyboard */,
-				72708DB32334BCA30091F6DD /* Info.plist */,
+				72708DBB2334BDD80091F6DD /* AllFeeds */,
+				72708DBA2334BDA90091F6DD /* ApplicationDelegate */,
+				72708DBE2334BE000091F6DD /* Configuration */,
+				72708DBD2334BDF80091F6DD /* LaunchScreen */,
+				72708DBC2334BDEE0091F6DD /* Resources */,
 			);
 			path = RssFeedsFetcherAndPresenter;
+			sourceTree = "<group>";
+		};
+		72708DBA2334BDA90091F6DD /* ApplicationDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				72708DA72334BCA00091F6DD /* AppDelegate.swift */,
+			);
+			path = ApplicationDelegate;
+			sourceTree = "<group>";
+		};
+		72708DBB2334BDD80091F6DD /* AllFeeds */ = {
+			isa = PBXGroup;
+			children = (
+				72708DA92334BCA00091F6DD /* AllFeedsViewController.swift */,
+			);
+			path = AllFeeds;
+			sourceTree = "<group>";
+		};
+		72708DBC2334BDEE0091F6DD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				72708DAE2334BCA30091F6DD /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		72708DBD2334BDF80091F6DD /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				72708DB02334BCA30091F6DD /* LaunchScreen.storyboard */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		72708DBE2334BE000091F6DD /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				72708DB32334BCA30091F6DD /* Info.plist */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,7 +161,6 @@
 			files = (
 				72708DB22334BCA30091F6DD /* LaunchScreen.storyboard in Resources */,
 				72708DAF2334BCA30091F6DD /* Assets.xcassets in Resources */,
-				72708DAD2334BCA00091F6DD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72708DAA2334BCA00091F6DD /* ViewController.swift in Sources */,
+				72708DAA2334BCA00091F6DD /* AllFeedsViewController.swift in Sources */,
 				72708DA82334BCA00091F6DD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,14 +179,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		72708DAB2334BCA00091F6DD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				72708DAC2334BCA00091F6DD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		72708DB02334BCA30091F6DD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -283,7 +311,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = RssFeedsFetcherAndPresenter/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RssFeedsFetcherAndPresenter/Configuration/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,7 +329,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = RssFeedsFetcherAndPresenter/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RssFeedsFetcherAndPresenter/Configuration/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
