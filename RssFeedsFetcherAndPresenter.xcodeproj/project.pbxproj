@@ -19,6 +19,8 @@
 		72708DD52334D7290091F6DD /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DD42334D7290091F6DD /* DataFetcher.swift */; };
 		72708DD72334D8710091F6DD /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DD62334D8710091F6DD /* RequestBuilder.swift */; };
 		72708DDB2334D9C80091F6DD /* AllFeedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DDA2334D9C80091F6DD /* AllFeedsViewModel.swift */; };
+		72708DE02334DCB40091F6DD /* RSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DDF2334DCB40091F6DD /* RSSParser.swift */; };
+		72708DE42337CDD00091F6DD /* AllFeedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DE32337CDD00091F6DD /* AllFeedTableView.swift */; };
 		EF0E94C78B9C9A3066981B99 /* Pods_RssFeedsFetcherAndPresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,8 @@
 		72708DD42334D7290091F6DD /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
 		72708DD62334D8710091F6DD /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		72708DDA2334D9C80091F6DD /* AllFeedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFeedsViewModel.swift; sourceTree = "<group>"; };
+		72708DDF2334DCB40091F6DD /* RSSParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSParser.swift; sourceTree = "<group>"; };
+		72708DE32337CDD00091F6DD /* AllFeedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFeedTableView.swift; sourceTree = "<group>"; };
 		85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RssFeedsFetcherAndPresenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -134,6 +138,7 @@
 			children = (
 				72708DC02334C2020091F6DD /* FeedCell.swift */,
 				72708DCB2334C7810091F6DD /* FeedCellViewModel.swift */,
+				72708DE32337CDD00091F6DD /* AllFeedTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,6 +173,7 @@
 			children = (
 				72708DD42334D7290091F6DD /* DataFetcher.swift */,
 				72708DD62334D8710091F6DD /* RequestBuilder.swift */,
+				72708DDF2334DCB40091F6DD /* RSSParser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -323,6 +329,8 @@
 				72708DAA2334BCA00091F6DD /* AllFeedsViewController.swift in Sources */,
 				72708DA82334BCA00091F6DD /* AppDelegate.swift in Sources */,
 				72708DD52334D7290091F6DD /* DataFetcher.swift in Sources */,
+				72708DE02334DCB40091F6DD /* RSSParser.swift in Sources */,
+				72708DE42337CDD00091F6DD /* AllFeedTableView.swift in Sources */,
 				72708DD72334D8710091F6DD /* RequestBuilder.swift in Sources */,
 				72708DCC2334C7810091F6DD /* FeedCellViewModel.swift in Sources */,
 				72708DC82334C48F0091F6DD /* UIStackView+Extensions.swift in Sources */,

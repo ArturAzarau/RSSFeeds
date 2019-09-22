@@ -24,13 +24,19 @@ final class DataFetcher {
 
     // MARK: - Internal
 
-    func fetchImage(for stringURL: String) throws -> Observable<Data> {
-        
-        do {
-            let request = try requestBuilder.buildRequest(from: stringURL)
-            return URLSession.shared.rx.data(request: request)
-        } catch {
-            throw error
+    func fetchImage(for stringURL: String) -> Single<Data> {
+
+        return .deferred { [weak self] in
+
+            do {
+                if let request = try self?.requestBuilder.buildRequest(from: stringURL) {
+                    return URLSession.shared.rx.data(request: request).asSingle()
+                } else {
+                    return .error(FetchError.wrongURL)
+                }
+            } catch {
+                return .error(error)
+            }
         }
     }
 }

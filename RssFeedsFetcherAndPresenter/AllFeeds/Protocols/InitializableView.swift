@@ -21,9 +21,9 @@ extension InitializableView {
     func initializeView() {
         addViews()
         bindViews()
+        configureLayout()
         configureAppearance()
         localize()
-        bindViews()
     }
 
     func addViews() {}

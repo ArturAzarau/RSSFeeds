@@ -12,6 +12,8 @@ import RxSwift
 
 final class FeedCell: UITableViewCell, InitializableView {
 
+    static let reuseIdentifier = "FeedCell"
+
     // MARK: - Properties
 
     private var disposeBag = DisposeBag()
@@ -38,16 +40,35 @@ final class FeedCell: UITableViewCell, InitializableView {
     // MARK: - InitializableView
 
     func addViews() {
-        labelsStackView.addArrangedSubviews(feedTitleLabel, feedDescriptionLabel)
-        mainStackView.addArrangedSubviews(feedImageView, labelsStackView)
-        contentView.addSubview(mainStackView)
+        contentView.addSubview(feedImageView)
+        contentView.addSubview(feedTitleLabel)
+        contentView.addSubview(feedDescriptionLabel)
     }
 
     func configureLayout() {
-        labelsStackView.axis = .vertical
-        labelsStackView.spacing = 3
+        feedImageView.snp.makeConstraints { make in
+            make.size.equalTo(100)
+            make.leading.top.equalToSuperview().inset(20)
+        }
 
-        mainStackView.spacing = 3
+        feedTitleLabel.snp.makeConstraints { make in
+            make.top.trailing.equalToSuperview().inset(20)
+            make.leading.equalTo(feedImageView.snp.trailing).offset(20)
+        }
+
+        feedDescriptionLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(feedTitleLabel)
+            make.top.equalTo(feedTitleLabel.snp.bottom).offset(20)
+            make.bottom.equalToSuperview().inset(20)
+        }
+
+        feedDescriptionLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        feedTitleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+    }
+
+    func configureAppearance() {
+        selectionStyle = .none
+        [feedTitleLabel, feedDescriptionLabel].forEach { $0.numberOfLines = 0 }
     }
 }
 
@@ -56,7 +77,8 @@ extension FeedCell: ConfigurableView {
         disposeBag = DisposeBag()
 
         feedTitleLabel.text = viewModel.title
-        feedDescriptionLabel.text = viewModel.title
+        feedDescriptionLabel.text = viewModel.description
+
         viewModel.imageDriver.drive(imageBinder).disposed(by: disposeBag)
     }
 
@@ -64,7 +86,7 @@ extension FeedCell: ConfigurableView {
         return Binder(self) { base, image in
             if let image = image {
                 base.imageView?.isHidden = false
-                base.imageView?.image = image
+                base.feedImageView.image = image
             } else {
                 base.imageView?.isHidden = true
             }
