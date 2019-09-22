@@ -9,6 +9,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import SnapKit
 
 final class FeedCell: UITableViewCell, InitializableView {
 
@@ -21,8 +22,8 @@ final class FeedCell: UITableViewCell, InitializableView {
     let feedImageView = UIImageView()
     let feedTitleLabel = UILabel()
     let feedDescriptionLabel = UILabel()
-    let labelsStackView = UIStackView()
-    let mainStackView = UIStackView()
+
+    private var imageViewHeightConstraint: ConstraintMakerEditable?
 
     // MARK: - Init
 
@@ -67,8 +68,12 @@ final class FeedCell: UITableViewCell, InitializableView {
     }
 
     func configureAppearance() {
+
+        feedTitleLabel.font = .systemFont(ofSize: 21, weight: .semibold)
+        feedDescriptionLabel.textColor = .darkGray
         selectionStyle = .none
         [feedTitleLabel, feedDescriptionLabel].forEach { $0.numberOfLines = 0 }
+        feedImageView.contentMode = .scaleAspectFit
     }
 }
 
@@ -85,10 +90,16 @@ extension FeedCell: ConfigurableView {
     private var imageBinder: Binder<UIImage?> {
         return Binder(self) { base, image in
             if let image = image {
-                base.imageView?.isHidden = false
+                base.feedImageView.isHidden = false
                 base.feedImageView.image = image
+                base.feedImageView.snp.updateConstraints({ make in
+                    make.size.equalTo(100)
+                })
             } else {
-                base.imageView?.isHidden = true
+                base.feedImageView.snp.updateConstraints({ make in
+                    make.width.equalTo(0)
+                })
+                base.feedImageView.isHidden = true
             }
         }
     }
