@@ -26,6 +26,7 @@
 		72708DEE2337E9330091F6DD /* SectionOfCustomData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DED2337E9330091F6DD /* SectionOfCustomData.swift */; };
 		72708DF42337EB9F0091F6DD /* RSSFeedSourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DF32337EB9F0091F6DD /* RSSFeedSourcesViewController.swift */; };
 		72708DF72337EBD80091F6DD /* RSSFeedSourcesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DF62337EBD80091F6DD /* RSSFeedSourcesViewModel.swift */; };
+		72708DFB2337ED020091F6DD /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DFA2337ED020091F6DD /* BaseTableViewController.swift */; };
 		EF0E94C78B9C9A3066981B99 /* Pods_RssFeedsFetcherAndPresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		72708DED2337E9330091F6DD /* SectionOfCustomData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfCustomData.swift; sourceTree = "<group>"; };
 		72708DF32337EB9F0091F6DD /* RSSFeedSourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedSourcesViewController.swift; sourceTree = "<group>"; };
 		72708DF62337EBD80091F6DD /* RSSFeedSourcesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedSourcesViewModel.swift; sourceTree = "<group>"; };
+		72708DFA2337ED020091F6DD /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RssFeedsFetcherAndPresenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -210,6 +212,7 @@
 		72708DEF2337EB5E0091F6DD /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				72708DF92337ECF00091F6DD /* Base */,
 				72708DF02337EB6A0091F6DD /* RSSFeedSources */,
 				72708DBB2334BDD80091F6DD /* AllFeeds */,
 			);
@@ -239,6 +242,14 @@
 				72708DF62337EBD80091F6DD /* RSSFeedSourcesViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		72708DF92337ECF00091F6DD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				72708DFA2337ED020091F6DD /* BaseTableViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		94B28DDFDC0D8FE289E7E1DA /* Pods */ = {
@@ -372,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72708DFB2337ED020091F6DD /* BaseTableViewController.swift in Sources */,
 				72708DDB2334D9C80091F6DD /* AllFeedsViewModel.swift in Sources */,
 				72708DE82337DCB00091F6DD /* AlertControllerFactory.swift in Sources */,
 				72708DAA2334BCA00091F6DD /* AllFeedsViewController.swift in Sources */,
