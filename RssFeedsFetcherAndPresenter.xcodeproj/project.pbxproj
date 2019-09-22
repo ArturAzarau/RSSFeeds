@@ -21,6 +21,8 @@
 		72708DDB2334D9C80091F6DD /* AllFeedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DDA2334D9C80091F6DD /* AllFeedsViewModel.swift */; };
 		72708DE02334DCB40091F6DD /* RSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DDF2334DCB40091F6DD /* RSSParser.swift */; };
 		72708DE42337CDD00091F6DD /* AllFeedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DE32337CDD00091F6DD /* AllFeedTableView.swift */; };
+		72708DE82337DCB00091F6DD /* AlertControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DE72337DCB00091F6DD /* AlertControllerFactory.swift */; };
+		72708DEC2337E7E50091F6DD /* TableViewDataSourceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DEB2337E7E50091F6DD /* TableViewDataSourceHolder.swift */; };
 		EF0E94C78B9C9A3066981B99 /* Pods_RssFeedsFetcherAndPresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +45,8 @@
 		72708DDA2334D9C80091F6DD /* AllFeedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFeedsViewModel.swift; sourceTree = "<group>"; };
 		72708DDF2334DCB40091F6DD /* RSSParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSParser.swift; sourceTree = "<group>"; };
 		72708DE32337CDD00091F6DD /* AllFeedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFeedTableView.swift; sourceTree = "<group>"; };
+		72708DE72337DCB00091F6DD /* AlertControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerFactory.swift; sourceTree = "<group>"; };
+		72708DEB2337E7E50091F6DD /* TableViewDataSourceHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSourceHolder.swift; sourceTree = "<group>"; };
 		85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RssFeedsFetcherAndPresenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -171,9 +175,11 @@
 		72708DD32334D7190091F6DD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				72708DE72337DCB00091F6DD /* AlertControllerFactory.swift */,
 				72708DD42334D7290091F6DD /* DataFetcher.swift */,
 				72708DD62334D8710091F6DD /* RequestBuilder.swift */,
 				72708DDF2334DCB40091F6DD /* RSSParser.swift */,
+				72708DEB2337E7E50091F6DD /* TableViewDataSourceHolder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -326,10 +332,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				72708DDB2334D9C80091F6DD /* AllFeedsViewModel.swift in Sources */,
+				72708DE82337DCB00091F6DD /* AlertControllerFactory.swift in Sources */,
 				72708DAA2334BCA00091F6DD /* AllFeedsViewController.swift in Sources */,
 				72708DA82334BCA00091F6DD /* AppDelegate.swift in Sources */,
 				72708DD52334D7290091F6DD /* DataFetcher.swift in Sources */,
 				72708DE02334DCB40091F6DD /* RSSParser.swift in Sources */,
+				72708DEC2337E7E50091F6DD /* TableViewDataSourceHolder.swift in Sources */,
 				72708DE42337CDD00091F6DD /* AllFeedTableView.swift in Sources */,
 				72708DD72334D8710091F6DD /* RequestBuilder.swift in Sources */,
 				72708DCC2334C7810091F6DD /* FeedCellViewModel.swift in Sources */,
