@@ -25,7 +25,7 @@ final class AllFeedTableView: UITableView, InitializableView {
     }
 
     func configureAppearance() {
-        separatorStyle = .none
+        separatorStyle = .singleLine
     }
 
     func configureLayout() {
