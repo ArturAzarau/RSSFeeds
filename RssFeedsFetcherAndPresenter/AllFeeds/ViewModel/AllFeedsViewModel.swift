@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 final class AllFeedsViewModel {
 
@@ -16,14 +17,19 @@ final class AllFeedsViewModel {
 
     private let disposeBag = DisposeBag()
     private let dataFetcher = DataFetcher()
-    private let viewModelsRelay = BehaviorRelay(value: [FeedCellViewModel]())
+    private let viewModelsRelay = BehaviorRelay(value: [SectionOfCustomData]())
+    private let dataSourceHolder = TableViewDataSourceHolder()
 
-    var viewModelsDriver: Driver<[FeedCellViewModel]> {
+    var viewModelsDriver: Driver<[SectionOfCustomData]> {
         return viewModelsRelay.asDriver()
     }
 
-    func startFetchingRSSFeeds() {
-        guard let url = URL(string: "https://www.espn.com/espn/rss/news") else {
+    var tableViewDataSource: RxTableViewSectionedReloadDataSource<SectionOfCustomData> {
+        return dataSourceHolder.tableViewDataSource
+    }
+
+    func startFetchingRSSFeeds(for stringURL: String = "https://www.espn.com/espn/rss/news") {
+        guard let url = URL(string: stringURL) else {
             fatalError("Cannot construct proper url from string")
         }
 
@@ -44,8 +50,8 @@ final class AllFeedsViewModel {
 
                     return FeedCellViewModel(title: item.title, description: item.description, imageDriver: driver)
                 }
-
-                self?.viewModelsRelay.accept(viewModels)
+                let values = self?.viewModelsRelay.value ?? []
+                self?.viewModelsRelay.accept(values + [SectionOfCustomData(header: stringURL, items: viewModels)])
             }, onError: { error in
                 print("Error: \(error)")
             })
