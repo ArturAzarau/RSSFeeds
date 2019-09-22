@@ -8,5 +8,5 @@ target 'RssFeedsFetcherAndPresenter' do
   pod 'SnapKit'
   pod 'RxSwift'
   pod 'RxCocoa'
-
+  pod 'FeedKit'
 end
