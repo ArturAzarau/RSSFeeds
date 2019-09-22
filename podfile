@@ -9,4 +9,5 @@ target 'RssFeedsFetcherAndPresenter' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'FeedKit', :git => 'https://github.com/ArturAzarau/FeedKit'
+  pod 'RxDataSources'
 end
