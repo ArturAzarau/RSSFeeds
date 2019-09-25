@@ -24,6 +24,10 @@
 		72708DE82337DCB00091F6DD /* AlertControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DE72337DCB00091F6DD /* AlertControllerFactory.swift */; };
 		72708DEC2337E7E50091F6DD /* TableViewDataSourceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DEB2337E7E50091F6DD /* TableViewDataSourceHolder.swift */; };
 		72708DEE2337E9330091F6DD /* SectionOfCustomData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DED2337E9330091F6DD /* SectionOfCustomData.swift */; };
+		72708DF42337EB9F0091F6DD /* RSSFeedSourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DF32337EB9F0091F6DD /* RSSFeedSourcesViewController.swift */; };
+		72708DF72337EBD80091F6DD /* RSSFeedSourcesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DF62337EBD80091F6DD /* RSSFeedSourcesViewModel.swift */; };
+		72708DFB2337ED020091F6DD /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DFA2337ED020091F6DD /* BaseTableViewController.swift */; };
+		72708DFD2337F3130091F6DD /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DFC2337F3130091F6DD /* BaseTableViewCell.swift */; };
 		EF0E94C78B9C9A3066981B99 /* Pods_RssFeedsFetcherAndPresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +53,10 @@
 		72708DE72337DCB00091F6DD /* AlertControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerFactory.swift; sourceTree = "<group>"; };
 		72708DEB2337E7E50091F6DD /* TableViewDataSourceHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSourceHolder.swift; sourceTree = "<group>"; };
 		72708DED2337E9330091F6DD /* SectionOfCustomData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfCustomData.swift; sourceTree = "<group>"; };
+		72708DF32337EB9F0091F6DD /* RSSFeedSourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedSourcesViewController.swift; sourceTree = "<group>"; };
+		72708DF62337EBD80091F6DD /* RSSFeedSourcesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedSourcesViewModel.swift; sourceTree = "<group>"; };
+		72708DFA2337ED020091F6DD /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		72708DFC2337F3130091F6DD /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RssFeedsFetcherAndPresenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -85,7 +93,7 @@
 		72708DA62334BCA00091F6DD /* RssFeedsFetcherAndPresenter */ = {
 			isa = PBXGroup;
 			children = (
-				72708DBB2334BDD80091F6DD /* AllFeeds */,
+				72708DEF2337EB5E0091F6DD /* Screens */,
 				72708DBA2334BDA90091F6DD /* ApplicationDelegate */,
 				72708DBE2334BE000091F6DD /* Configuration */,
 				72708DC52334C4720091F6DD /* Extensions */,
@@ -201,6 +209,50 @@
 				72708DA92334BCA00091F6DD /* AllFeedsViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		72708DEF2337EB5E0091F6DD /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				72708DF92337ECF00091F6DD /* Base */,
+				72708DF02337EB6A0091F6DD /* RSSFeedSources */,
+				72708DBB2334BDD80091F6DD /* AllFeeds */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		72708DF02337EB6A0091F6DD /* RSSFeedSources */ = {
+			isa = PBXGroup;
+			children = (
+				72708DF52337EBC70091F6DD /* ViewModel */,
+				72708DF22337EB820091F6DD /* Controller */,
+			);
+			path = RSSFeedSources;
+			sourceTree = "<group>";
+		};
+		72708DF22337EB820091F6DD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				72708DF32337EB9F0091F6DD /* RSSFeedSourcesViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		72708DF52337EBC70091F6DD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				72708DF62337EBD80091F6DD /* RSSFeedSourcesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		72708DF92337ECF00091F6DD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				72708DFA2337ED020091F6DD /* BaseTableViewController.swift */,
+				72708DFC2337F3130091F6DD /* BaseTableViewCell.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		94B28DDFDC0D8FE289E7E1DA /* Pods */ = {
@@ -334,15 +386,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72708DFB2337ED020091F6DD /* BaseTableViewController.swift in Sources */,
 				72708DDB2334D9C80091F6DD /* AllFeedsViewModel.swift in Sources */,
 				72708DE82337DCB00091F6DD /* AlertControllerFactory.swift in Sources */,
+				72708DFD2337F3130091F6DD /* BaseTableViewCell.swift in Sources */,
 				72708DAA2334BCA00091F6DD /* AllFeedsViewController.swift in Sources */,
 				72708DEE2337E9330091F6DD /* SectionOfCustomData.swift in Sources */,
 				72708DA82334BCA00091F6DD /* AppDelegate.swift in Sources */,
+				72708DF42337EB9F0091F6DD /* RSSFeedSourcesViewController.swift in Sources */,
 				72708DD52334D7290091F6DD /* DataFetcher.swift in Sources */,
 				72708DE02334DCB40091F6DD /* RSSParser.swift in Sources */,
 				72708DEC2337E7E50091F6DD /* TableViewDataSourceHolder.swift in Sources */,
 				72708DE42337CDD00091F6DD /* AllFeedTableView.swift in Sources */,
+				72708DF72337EBD80091F6DD /* RSSFeedSourcesViewModel.swift in Sources */,
 				72708DD72334D8710091F6DD /* RequestBuilder.swift in Sources */,
 				72708DCC2334C7810091F6DD /* FeedCellViewModel.swift in Sources */,
 				72708DC82334C48F0091F6DD /* UIStackView+Extensions.swift in Sources */,
