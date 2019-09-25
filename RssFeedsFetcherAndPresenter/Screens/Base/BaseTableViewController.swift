@@ -7,17 +7,15 @@
 //
 
 import UIKit
+import RxSwift
 
-protocol Initializable {
-    init()
-}
-
-class BaseTableViewController<ViewModelType: Initializable>: UIViewController {
+class BaseTableViewController<ViewModelType, TableViewType: UITableView>: UIViewController {
 
     // MARK: - Properties
 
+    let disposeBag = DisposeBag()
     let viewModel: ViewModelType
-    let tableView = AllFeedTableView()
+    let tableView = TableViewType()
 
     // MARK: - Init
 

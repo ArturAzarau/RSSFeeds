@@ -11,42 +11,27 @@ import RxCocoa
 import RxSwift
 import SnapKit
 
-final class FeedCell: UITableViewCell, InitializableView {
-
-    static let reuseIdentifier = "FeedCell"
-
+final class FeedCell: BaseTableViewCell<FeedCellViewModel> {
+    
     // MARK: - Properties
-
-    private var disposeBag = DisposeBag()
 
     let feedImageView = UIImageView()
     let feedTitleLabel = UILabel()
     let feedDescriptionLabel = UILabel()
 
-    private var imageViewHeightConstraint: ConstraintMakerEditable?
-
-    // MARK: - Init
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        initializeView()
-    }
-
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("Initialization through storyboard is not supported")
-    }
-
     // MARK: - InitializableView
 
-    func addViews() {
+    override func addViews() {
+        super.addViews()
+
         contentView.addSubview(feedImageView)
         contentView.addSubview(feedTitleLabel)
         contentView.addSubview(feedDescriptionLabel)
     }
 
-    func configureLayout() {
+    override func configureLayout() {
+        super.configureLayout()
+
         feedImageView.snp.makeConstraints { make in
             make.size.equalTo(100)
             make.leading.top.equalToSuperview().inset(20)
@@ -67,7 +52,8 @@ final class FeedCell: UITableViewCell, InitializableView {
         feedTitleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
     }
 
-    func configureAppearance() {
+    override func configureAppearance() {
+        super.configureAppearance()
 
         feedTitleLabel.font = .systemFont(ofSize: 21, weight: .semibold)
         feedDescriptionLabel.textColor = .darkGray
@@ -75,11 +61,9 @@ final class FeedCell: UITableViewCell, InitializableView {
         [feedTitleLabel, feedDescriptionLabel].forEach { $0.numberOfLines = 0 }
         feedImageView.contentMode = .scaleAspectFit
     }
-}
 
-extension FeedCell: ConfigurableView {
-    func configure(with viewModel: FeedCellViewModel) {
-        disposeBag = DisposeBag()
+    override func configure(with viewModel: FeedCellViewModel) {
+        super.configure(with: viewModel)
 
         feedTitleLabel.text = viewModel.title
         feedDescriptionLabel.text = viewModel.description

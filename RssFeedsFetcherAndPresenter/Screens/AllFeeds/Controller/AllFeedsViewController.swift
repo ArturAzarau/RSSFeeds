@@ -12,20 +12,9 @@ import RxCocoa
 import SnapKit
 import RxDataSources
 
-final class AllFeedsViewController: UIViewController {
-
-    // MARK: - Properties
-
-    private let disposeBag = DisposeBag()
-    private let viewModel = AllFeedsViewModel()
-    private let tableView = AllFeedTableView()
-
+final class AllFeedsViewController: BaseTableViewController<AllFeedsViewModel, AllFeedTableView> {
 
     // MARK: - Life Cycle
-
-    override func loadView() {
-        view = tableView
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,22 +43,30 @@ final class AllFeedsViewController: UIViewController {
 
     private var rightBarButtonTappedBinder: Binder<Void> {
         return Binder(self) { base, value in
-            let alertController = AlertControllerFactory.createTextFieldAlertWithTwoActions(title: "Введите название ресурса с RSS",
-                                                                                            textFieldConfiguration: {
-                                                                                                $0.text = "https://grantland.com/features/feed/"
-            })
+//            let alertController = AlertControllerFactory.createTextFieldAlertWithTwoActions(title: "Введите название ресурса с RSS",
+//                                                                                            textFieldConfiguration: {
+//                                                                                                $0.text = "https://grantland.com/features/feed/"
+//            })
+//
+//            alertController.addAction(.init(title: "ОК", style: .default, handler: { _ in
+//                if let text = alertController.textFields?.first?.text {
+//                    base.viewModel.startFetchingRSSFeeds(for: text)
+//                }
+//            }))
+            //
+            //            base.present(alertController, animated: true)
 
-            alertController.addAction(.init(title: "ОК", style: .default, handler: { _ in
-                if let text = alertController.textFields?.first?.text {
-                    base.viewModel.startFetchingRSSFeeds(for: text)
-                }
-            }))
-
-            base.present(alertController, animated: true)
+            base.viewModel.viewModelsDriver
+                .drive(onNext: { sections in
+                    let rssSources = sections.map { $0.header }
+                    let controller = RSSFeedSourcesViewController(viewModel: .init(rssSources: rssSources))
+                    base.navigationController?.pushViewController(controller, animated: true)
+                })
+                .disposed(by: base.disposeBag)
         }
     }
 
     private func configureBarButtonItems() {
-        navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .add, target: self, action: nil)
+        navigationItem.rightBarButtonItem = .init(title: "RSS Sources Settings", style: .plain, target: self, action: nil)
     }
 }
