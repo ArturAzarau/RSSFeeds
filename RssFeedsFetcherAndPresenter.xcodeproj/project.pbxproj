@@ -29,6 +29,9 @@
 		72708DFB2337ED020091F6DD /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DFA2337ED020091F6DD /* BaseTableViewController.swift */; };
 		72708DFD2337F3130091F6DD /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DFC2337F3130091F6DD /* BaseTableViewCell.swift */; };
 		72E0D4A62341091500C47928 /* RSSFeedsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4A52341091500C47928 /* RSSFeedsStorage.swift */; };
+		72E0D4AC2341298D00C47928 /* RSSArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4AB2341298D00C47928 /* RSSArticleViewController.swift */; };
+		72E0D4AE2341299700C47928 /* RSSArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4AD2341299700C47928 /* RSSArticleViewModel.swift */; };
+		72E0D4B323412A3900C47928 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4B223412A3900C47928 /* BaseViewController.swift */; };
 		EF0E94C78B9C9A3066981B99 /* Pods_RssFeedsFetcherAndPresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +62,9 @@
 		72708DFA2337ED020091F6DD /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		72708DFC2337F3130091F6DD /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		72E0D4A52341091500C47928 /* RSSFeedsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedsStorage.swift; sourceTree = "<group>"; };
+		72E0D4AB2341298D00C47928 /* RSSArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSArticleViewController.swift; sourceTree = "<group>"; };
+		72E0D4AD2341299700C47928 /* RSSArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSArticleViewModel.swift; sourceTree = "<group>"; };
+		72E0D4B223412A3900C47928 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RssFeedsFetcherAndPresenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -216,9 +222,10 @@
 		72708DEF2337EB5E0091F6DD /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				72708DF92337ECF00091F6DD /* Base */,
-				72708DF02337EB6A0091F6DD /* RSSFeedSources */,
 				72708DBB2334BDD80091F6DD /* AllFeeds */,
+				72708DF92337ECF00091F6DD /* Base */,
+				72E0D4A72341294400C47928 /* RSSArticle */,
+				72708DF02337EB6A0091F6DD /* RSSFeedSources */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -254,8 +261,50 @@
 			children = (
 				72708DFA2337ED020091F6DD /* BaseTableViewController.swift */,
 				72708DFC2337F3130091F6DD /* BaseTableViewCell.swift */,
+				72E0D4B223412A3900C47928 /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		72E0D4A72341294400C47928 /* RSSArticle */ = {
+			isa = PBXGroup;
+			children = (
+				72E0D4A82341297600C47928 /* Controller */,
+				72E0D4AA2341298000C47928 /* Model */,
+				72E0D4A92341297C00C47928 /* ViewModel */,
+				72E0D4AF234129D300C47928 /* Views */,
+			);
+			path = RSSArticle;
+			sourceTree = "<group>";
+		};
+		72E0D4A82341297600C47928 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				72E0D4AB2341298D00C47928 /* RSSArticleViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		72E0D4A92341297C00C47928 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				72E0D4AD2341299700C47928 /* RSSArticleViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		72E0D4AA2341298000C47928 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		72E0D4AF234129D300C47928 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		72F55259234108E6003B6E7E /* Models */ = {
@@ -402,7 +451,9 @@
 				72708DE82337DCB00091F6DD /* AlertControllerFactory.swift in Sources */,
 				72708DFD2337F3130091F6DD /* BaseTableViewCell.swift in Sources */,
 				72708DAA2334BCA00091F6DD /* AllFeedsViewController.swift in Sources */,
+				72E0D4B323412A3900C47928 /* BaseViewController.swift in Sources */,
 				72708DEE2337E9330091F6DD /* SectionOfCustomData.swift in Sources */,
+				72E0D4AC2341298D00C47928 /* RSSArticleViewController.swift in Sources */,
 				72708DA82334BCA00091F6DD /* AppDelegate.swift in Sources */,
 				72708DF42337EB9F0091F6DD /* RSSFeedSourcesViewController.swift in Sources */,
 				72708DD52334D7290091F6DD /* DataFetcher.swift in Sources */,
@@ -414,6 +465,7 @@
 				72708DD72334D8710091F6DD /* RequestBuilder.swift in Sources */,
 				72708DCC2334C7810091F6DD /* FeedCellViewModel.swift in Sources */,
 				72708DC82334C48F0091F6DD /* UIStackView+Extensions.swift in Sources */,
+				72E0D4AE2341299700C47928 /* RSSArticleViewModel.swift in Sources */,
 				72708DCA2334C5320091F6DD /* ConfigurableView.swift in Sources */,
 				72708DC42334C3AB0091F6DD /* InitializableView.swift in Sources */,
 				72708DC12334C2020091F6DD /* FeedCell.swift in Sources */,
