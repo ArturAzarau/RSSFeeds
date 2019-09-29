@@ -9,15 +9,31 @@
 import UIKit
 
 enum AlertControllerFactory {
-
-    static func createTextFieldAlertWithTwoActions(title: String? = nil,
-                                                   message: String? = nil,
-                                                   textFieldConfiguration: ((UITextField) -> ())? = nil) -> UIAlertController {
-
+    
+    static func createTextFieldAlertWithCancel(title: String? = nil,
+                                               message: String? = nil,
+                                               textFieldConfiguration: ((UITextField) -> ())? = nil) -> UIAlertController {
+        
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addTextField(configurationHandler: textFieldConfiguration)
-        alertController.addAction(.init(title: "Отмена", style: .cancel, handler: { _ in
-            alertController.dismiss(animated: true)
+        alertController.addAction(.init(title: "Отмена", style: .cancel))
+        
+        return alertController
+    }
+
+    static func createOkAlertWithTextField(title: String? = nil,
+                                           message: String? = nil,
+                                           textFieldText: String? = nil,
+                                           okAction: @escaping (String) -> ()) -> UIAlertController {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addTextField { textfield in
+            textfield.text = textFieldText
+        }
+        alertController.addAction(.init(title: "OK", style: .cancel, handler: { _ in
+            guard let text = alertController.textFields?[0].text else {
+                return
+            }
+            okAction(text)
         }))
 
         return alertController

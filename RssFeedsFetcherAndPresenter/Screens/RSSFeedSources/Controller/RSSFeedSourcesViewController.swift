@@ -22,10 +22,34 @@ final class RSSFeedSourcesViewController: BaseTableViewController<RSSFeedSources
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: .rssSourceCellReuseIdentifier)
 
+        configureBarButtonItems()
         bindViews()
     }
 
     // MARK: - Helpers
+
+    private func configureBarButtonItems() {
+        navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .add, target: self, action: nil)
+    }
+
+    private func bindRightBarButtonItem() {
+        navigationItem.rightBarButtonItem?.rx.tap
+            .subscribe(onNext: { [weak self] in
+                let alertController = AlertControllerFactory.createTextFieldAlertWithCancel(title: "Введите название ресурса с RSS",
+                                                                                            textFieldConfiguration: {
+                                                                                                $0.text = "https://grantland.com/features/feed/"
+                })
+
+                alertController.addAction(.init(title: "ОК", style: .default, handler: { [weak self] _ in
+                    if let text = alertController.textFields?.first?.text {
+                        self?.viewModel.addRssSource(text)
+                    }
+                }))
+
+                self?.present(alertController, animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
 
     private func bindViews() {
         viewModel.rssSourcesDriver
@@ -33,5 +57,31 @@ final class RSSFeedSourcesViewController: BaseTableViewController<RSSFeedSources
                 cell.textLabel?.text = viewModel
             }
             .disposed(by: disposeBag)
+
+        tableView.rx.modelDeleted(String.self).subscribe(onNext: { [weak self] in
+            do {
+                try self?.viewModel.removeRssSource(with: $0)
+            } catch {
+                print(error)
+            }
+            print($0)
+        })
+        .disposed(by: disposeBag)
+
+        tableView.rx.itemSelected.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] indexPath in
+            guard let self = self else {
+                return
+            }
+            let currentValue = self.viewModel.sources[indexPath.row]
+            let controller = AlertControllerFactory.createOkAlertWithTextField(title: "Редактировать RSS Source",
+                                                                               textFieldText: currentValue) { [weak self] text in
+                                                                                self?.viewModel.editRssSource(text, at: indexPath)
+            }
+
+            self.present(controller, animated: true)
+        })
+            .disposed(by: disposeBag)
+
+        bindRightBarButtonItem()
     }
 }

@@ -15,6 +15,7 @@ final class AllFeedsViewModel {
 
     // MARK: - Inner Types
 
+    let storage = RSSFeedsStorage()
     private let disposeBag = DisposeBag()
     private let dataFetcher = DataFetcher()
     private let viewModelsRelay = BehaviorRelay(value: [SectionOfCustomData]())
@@ -56,7 +57,5 @@ final class AllFeedsViewModel {
                 print("Error: \(error)")
             })
             .disposed(by: disposeBag)
-
-
     }
 }
