@@ -13,7 +13,7 @@ import SnapKit
 import RxDataSources
 import SafariServices
 
-final class AllFeedsViewController: BaseTableViewController<AllFeedsViewModel, AllFeedTableView> {
+final class AllFeedsViewController: BaseAlertedViewController<AllFeedsViewModel, AllFeedTableView> {
 
     // MARK: - Life Cycle
 
@@ -45,12 +45,9 @@ final class AllFeedsViewController: BaseTableViewController<AllFeedsViewModel, A
 
     private var rightBarButtonTappedBinder: Binder<Void> {
         return Binder(self) { base, value in
-            base.viewModel.viewModelsDriver
-                .drive(onNext: { sections in
-                    let controller = RSSFeedSourcesViewController(viewModel: .init(storage: base.viewModel.storage))
-                    base.navigationController?.pushViewController(controller, animated: true)
-                })
-                .disposed(by: base.disposeBag)
+            let controller = RSSFeedSourcesViewController(viewModel: .init(storage: base.viewModel.storage,
+                                                                           delegate: base.viewModel))
+            base.navigationController?.pushViewController(controller, animated: true)
         }
     }
 

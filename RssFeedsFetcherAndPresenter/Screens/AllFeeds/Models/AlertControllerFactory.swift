@@ -38,4 +38,10 @@ enum AlertControllerFactory {
 
         return alertController
     }
+
+    static func createAlertWithError(error: Error) -> UIAlertController {
+        let alertController = UIAlertController(title: "Ошибка", message: error.localizedDescription, preferredStyle: .alert)
+        alertController.addAction(.init(title: "OK", style: .default))
+        return alertController
+    }
 }
