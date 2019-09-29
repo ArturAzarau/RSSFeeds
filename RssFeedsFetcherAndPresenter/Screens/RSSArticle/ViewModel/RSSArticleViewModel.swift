@@ -6,16 +6,18 @@
 //  Copyright © 2019 Артур Азаров. All rights reserved.
 //
 
+import Foundation
+
 struct RSSArticleViewModel {
 
     // MARK: - Properties
 
     let title: String?
-    let text: String?
+    let text: NSAttributedString?
 
     // MARK: Init
 
-    init(title: String?, text: String?) {
+    init(title: String?, text: NSAttributedString?) {
         self.title = title
         self.text = text
     }

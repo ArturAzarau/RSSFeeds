@@ -32,18 +32,28 @@ final class AllFeedsViewModel {
     }
 
     func startFetchingRSSFeeds(for stringURL: String = "https://www.espn.com/espn/rss/news") {
-        guard let url = URL(string: stringURL) else {
-            fatalError("Cannot construct proper url from string")
-        }
+        let sources = storage.getRssSources()
 
+        let singles = sources.compactMap { URL(string: $0) }.map { initialFeedsDownload(for: $0) }
+        Single.zip(singles)
+            .subscribe(onSuccess: { [weak self] viewModels in
+                self?.viewModelsRelay.accept(viewModels)
+            }) { error in
+                print(error)
+            }
+            .disposed(by: disposeBag)
+
+    }
+
+    private func initialFeedsDownload(for url: URL) -> Single<SectionOfCustomData> {
         let rssParser = RSSParser()
-        rssParser.parseFeed(from: url)
+        return rssParser.parseFeed(from: url)
             .observeOn(MainScheduler.instance)
             .do(onSuccess: { [weak self] items in
                 self?.rssItems = items
             })
-            .subscribe(onSuccess: { [weak self] feedItems in
-                let viewModels = feedItems.map { [weak self] item -> FeedCellViewModel in
+            .map { [weak self] feedItems in
+                return feedItems.map { [weak self] item -> FeedCellViewModel in
                     let driver: Driver<UIImage?>
                     if let self = self, let image = item.image {
                         driver = self.dataFetcher
@@ -56,11 +66,7 @@ final class AllFeedsViewModel {
 
                     return FeedCellViewModel(title: item.title, description: item.description, imageDriver: driver)
                 }
-                let values = self?.viewModelsRelay.value ?? []
-                self?.viewModelsRelay.accept(values + [SectionOfCustomData(header: stringURL, items: viewModels)])
-            }, onError: { error in
-                print("Error: \(error)")
-            })
-            .disposed(by: disposeBag)
+            }
+            .map { SectionOfCustomData(header: url.absoluteString, items: $0) }
     }
 }

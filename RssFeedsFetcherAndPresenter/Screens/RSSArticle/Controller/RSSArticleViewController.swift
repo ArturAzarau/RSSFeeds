@@ -22,6 +22,6 @@ final class RSSArticleViewController: BaseViewController<RSSArticleViewModel, UI
 
     private func configureText() {
         title = viewModel.title
-        customView.text = viewModel.text
+        customView.attributedText = viewModel.text
     }
 }
