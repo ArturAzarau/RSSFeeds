@@ -9,30 +9,5 @@
 import UIKit
 import RxSwift
 
-class BaseTableViewController<ViewModelType, TableViewType: UITableView>: UIViewController {
-
-    // MARK: - Properties
-
-    let disposeBag = DisposeBag()
-    let viewModel: ViewModelType
-    let tableView = TableViewType()
-
-    // MARK: - Init
-
-    init(viewModel: ViewModelType) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    // MARK: - Life Cycle
-
-    override func loadView() {
-        view = tableView
-    }
-}
+class BaseTableViewController<ViewModelType, TableViewType: UITableView>: BaseViewController<ViewModelType, TableViewType> {}
 

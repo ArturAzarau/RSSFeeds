@@ -20,7 +20,7 @@ final class RSSFeedSourcesViewController: BaseTableViewController<RSSFeedSources
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: .rssSourceCellReuseIdentifier)
+        customView.register(UITableViewCell.self, forCellReuseIdentifier: .rssSourceCellReuseIdentifier)
 
         configureBarButtonItems()
         bindViews()
@@ -53,12 +53,12 @@ final class RSSFeedSourcesViewController: BaseTableViewController<RSSFeedSources
 
     private func bindViews() {
         viewModel.rssSourcesDriver
-            .drive(tableView.rx.items(cellIdentifier: .rssSourceCellReuseIdentifier, cellType: UITableViewCell.self)) { index, viewModel, cell in
+            .drive(customView.rx.items(cellIdentifier: .rssSourceCellReuseIdentifier, cellType: UITableViewCell.self)) { index, viewModel, cell in
                 cell.textLabel?.text = viewModel
             }
             .disposed(by: disposeBag)
 
-        tableView.rx.modelDeleted(String.self).subscribe(onNext: { [weak self] in
+        customView.rx.modelDeleted(String.self).subscribe(onNext: { [weak self] in
             do {
                 try self?.viewModel.removeRssSource(with: $0)
             } catch {
@@ -68,7 +68,7 @@ final class RSSFeedSourcesViewController: BaseTableViewController<RSSFeedSources
         })
         .disposed(by: disposeBag)
 
-        tableView.rx.itemSelected.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] indexPath in
+        customView.rx.itemSelected.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] indexPath in
             guard let self = self else {
                 return
             }

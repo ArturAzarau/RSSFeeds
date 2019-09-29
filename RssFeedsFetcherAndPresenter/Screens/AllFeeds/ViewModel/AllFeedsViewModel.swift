@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import RxDataSources
+import FeedKit
 
 final class AllFeedsViewModel {
 
@@ -20,6 +21,7 @@ final class AllFeedsViewModel {
     private let dataFetcher = DataFetcher()
     private let viewModelsRelay = BehaviorRelay(value: [SectionOfCustomData]())
     private let dataSourceHolder = TableViewDataSourceHolder()
+    private(set) var rssItems = [RSSFeedItem]()
 
     var viewModelsDriver: Driver<[SectionOfCustomData]> {
         return viewModelsRelay.asDriver()
@@ -37,6 +39,9 @@ final class AllFeedsViewModel {
         let rssParser = RSSParser()
         rssParser.parseFeed(from: url)
             .observeOn(MainScheduler.instance)
+            .do(onSuccess: { [weak self] items in
+                self?.rssItems = items
+            })
             .subscribe(onSuccess: { [weak self] feedItems in
                 let viewModels = feedItems.map { [weak self] item -> FeedCellViewModel in
                     let driver: Driver<UIImage?>

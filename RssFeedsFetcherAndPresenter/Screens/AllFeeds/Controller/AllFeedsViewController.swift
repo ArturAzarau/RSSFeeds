@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import SnapKit
 import RxDataSources
+import SafariServices
 
 final class AllFeedsViewController: BaseTableViewController<AllFeedsViewModel, AllFeedTableView> {
 
@@ -24,16 +25,17 @@ final class AllFeedsViewController: BaseTableViewController<AllFeedsViewModel, A
         bindViews()
     }
 
-    // MARK: - Helpers
+    // MARK: - Bindings
 
     private func bindViews() {
         bindCellsViewModels()
         bindRightBarButtonItem()
+        bindItemsSelection()
     }
 
     private func bindCellsViewModels() {
         viewModel.viewModelsDriver
-            .drive(tableView.rx.items(dataSource: viewModel.tableViewDataSource))
+            .drive(customView.rx.items(dataSource: viewModel.tableViewDataSource))
             .disposed(by: disposeBag)
     }
 
@@ -51,6 +53,36 @@ final class AllFeedsViewController: BaseTableViewController<AllFeedsViewModel, A
                 .disposed(by: base.disposeBag)
         }
     }
+
+    private func bindItemsSelection() {
+        customView.rx.modelSelected(FeedCellViewModel.self)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] item in
+                guard let self = self else {
+                    return
+                }
+
+                let rssItem = self.viewModel.rssItems.first { $0.title == item.title }
+                let title = rssItem?.title
+                let content = rssItem?.content?.contentEncoded
+
+                let controller: UIViewController
+
+                if content == nil {
+                    guard let link = rssItem?.link, let url = URL(string: link) else {
+                        return
+                    }
+                    controller = SFSafariViewController(url: url)
+                } else {
+                    controller = RSSArticleViewController(viewModel: .init(title: title, text: content))
+                }
+
+                self.navigationController?.pushViewController(controller, animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+
+    // MARK: - Helpers
 
     private func configureBarButtonItems() {
         navigationItem.rightBarButtonItem = .init(title: "RSS Sources Settings", style: .plain, target: self, action: nil)
