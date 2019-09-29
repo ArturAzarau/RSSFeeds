@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import SnapKit
 
-final class FeedCell: BaseTableViewCell<FeedCellViewModel> {
+final class FeedCell: BaseViewModelTableViewCell<FeedCellViewModel> {
     
     // MARK: - Properties
 

@@ -57,19 +57,20 @@ final class AllFeedsViewController: BaseAlertedViewController<AllFeedsViewModel,
 
     private func bindItemsSelection() {
         customView.rx.modelSelected(FeedCellViewModel.self)
-            .observeOn(MainScheduler.instance)
+            .observeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] item in
                 defer {
                     self?.loaderVC.remove()
+                    self?.customView.isScrollEnabled = true
                 }
-
                 guard let self = self else {
                     return
                 }
 
                 let controller: UIViewController
 
-                self.navigationController?.add(self.loaderVC)
+                self.add(self.loaderVC)
+                self.customView.isScrollEnabled = false
                 if let htmlText = self.viewModel.createHTMLPage(for: item.title) {
                     controller = RSSArticleViewController(viewModel: .init(title: item.title, text: htmlText))
                     self.navigationController?.pushViewController(controller, animated: true)

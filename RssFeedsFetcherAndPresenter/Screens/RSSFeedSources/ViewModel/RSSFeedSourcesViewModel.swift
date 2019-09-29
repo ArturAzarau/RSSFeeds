@@ -51,10 +51,14 @@ final class RSSFeedSourcesViewModel: BaseAlertedViewModel {
         }
     }
 
-    func removeRssSource(with urlString: String) throws {
-        let newSources = try rssStorage.deleteRssSorce(with: urlString)
-        delegate?.sourceDidRemove(source: urlString)
-        rssSourcesRelay.accept(newSources)
+    func removeRssSource(with urlString: String) {
+        do {
+            let newSources = try rssStorage.deleteRssSorce(with: urlString)
+            delegate?.sourceDidRemove(source: urlString)
+            rssSourcesRelay.accept(newSources)
+        } catch {
+            errorsRelay.accept(error)
+        }
     }
 
     func editRssSource(_ newValue: String, at indexPath: IndexPath) {

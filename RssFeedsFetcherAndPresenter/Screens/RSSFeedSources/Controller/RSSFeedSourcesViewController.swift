@@ -59,12 +59,7 @@ final class RSSFeedSourcesViewController: BaseTableViewController<RSSFeedSources
             .disposed(by: disposeBag)
 
         customView.rx.modelDeleted(String.self).subscribe(onNext: { [weak self] in
-            do {
-                try self?.viewModel.removeRssSource(with: $0)
-            } catch {
-                print(error)
-            }
-            print($0)
+            self?.viewModel.removeRssSource(with: $0)
         })
         .disposed(by: disposeBag)
 

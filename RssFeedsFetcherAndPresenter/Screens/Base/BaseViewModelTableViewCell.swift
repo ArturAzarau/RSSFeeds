@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class BaseTableViewCell<ViewModelType>: UITableViewCell, InitializableView {
+class BaseViewModelTableViewCell<ViewModelType>: UITableViewCell, InitializableView {
 
     // MARK: - Properties
 
