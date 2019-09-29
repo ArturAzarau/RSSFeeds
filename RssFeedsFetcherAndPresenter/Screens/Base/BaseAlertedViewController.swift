@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseAlertedViewController<ViewModelType: BaseAlertedViewModel, ViewType: UIView>: BaseViewController<ViewModelType, ViewType> {
+class BaseAlertedViewController<ViewModelType: BaseAlertedViewModel, ViewType: UIView>: BaseViewModelViewController<ViewModelType, ViewType> {
 
     override init(viewModel: ViewModelType) {
         super.init(viewModel: viewModel)

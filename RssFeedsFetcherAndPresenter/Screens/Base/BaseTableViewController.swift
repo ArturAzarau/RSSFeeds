@@ -9,5 +9,5 @@
 import UIKit
 import RxSwift
 
-class BaseTableViewController<ViewModelType, TableViewType: UITableView>: BaseViewController<ViewModelType, TableViewType> {}
+class BaseTableViewController<ViewModelType, TableViewType: UITableView>: BaseViewModelViewController<ViewModelType, TableViewType> {}
 

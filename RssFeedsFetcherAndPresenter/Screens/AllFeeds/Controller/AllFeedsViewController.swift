@@ -15,6 +15,10 @@ import SafariServices
 
 final class AllFeedsViewController: BaseAlertedViewController<AllFeedsViewModel, AllFeedTableView> {
 
+    // MARK: - Properties
+
+    private let loaderVC = LoaderViewController()
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -66,11 +70,13 @@ final class AllFeedsViewController: BaseAlertedViewController<AllFeedsViewModel,
                 if let content = rssItem?.content?.contentEncoded, let data = content.data(using: .utf8, allowLossyConversion: true) {
                     let title = rssItem?.title
                     do {
+                        self.navigationController?.add(self.loaderVC)
                         let attributtedString = try NSAttributedString(data: data,
                                                                        options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html],
                                                                        documentAttributes: nil)
 
                         controller = RSSArticleViewController(viewModel: .init(title: title, text: attributtedString))
+                        self.loaderVC.remove()
                         self.navigationController?.pushViewController(controller, animated: true)
                     } catch {
                         print(error)
