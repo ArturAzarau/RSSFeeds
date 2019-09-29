@@ -32,6 +32,8 @@
 		72E0D4AC2341298D00C47928 /* RSSArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4AB2341298D00C47928 /* RSSArticleViewController.swift */; };
 		72E0D4AE2341299700C47928 /* RSSArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4AD2341299700C47928 /* RSSArticleViewModel.swift */; };
 		72E0D4B323412A3900C47928 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4B223412A3900C47928 /* BaseViewController.swift */; };
+		72E0D4B523413DFC00C47928 /* BaseAlertedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4B423413DFC00C47928 /* BaseAlertedViewModel.swift */; };
+		72E0D4B723413F1D00C47928 /* BaseAlertedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4B623413F1D00C47928 /* BaseAlertedViewController.swift */; };
 		EF0E94C78B9C9A3066981B99 /* Pods_RssFeedsFetcherAndPresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,8 @@
 		72E0D4AB2341298D00C47928 /* RSSArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSArticleViewController.swift; sourceTree = "<group>"; };
 		72E0D4AD2341299700C47928 /* RSSArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSArticleViewModel.swift; sourceTree = "<group>"; };
 		72E0D4B223412A3900C47928 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		72E0D4B423413DFC00C47928 /* BaseAlertedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAlertedViewModel.swift; sourceTree = "<group>"; };
+		72E0D4B623413F1D00C47928 /* BaseAlertedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAlertedViewController.swift; sourceTree = "<group>"; };
 		85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RssFeedsFetcherAndPresenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -262,6 +266,8 @@
 				72708DFA2337ED020091F6DD /* BaseTableViewController.swift */,
 				72708DFC2337F3130091F6DD /* BaseTableViewCell.swift */,
 				72E0D4B223412A3900C47928 /* BaseViewController.swift */,
+				72E0D4B423413DFC00C47928 /* BaseAlertedViewModel.swift */,
+				72E0D4B623413F1D00C47928 /* BaseAlertedViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -451,6 +457,7 @@
 				72708DE82337DCB00091F6DD /* AlertControllerFactory.swift in Sources */,
 				72708DFD2337F3130091F6DD /* BaseTableViewCell.swift in Sources */,
 				72708DAA2334BCA00091F6DD /* AllFeedsViewController.swift in Sources */,
+				72E0D4B523413DFC00C47928 /* BaseAlertedViewModel.swift in Sources */,
 				72E0D4B323412A3900C47928 /* BaseViewController.swift in Sources */,
 				72708DEE2337E9330091F6DD /* SectionOfCustomData.swift in Sources */,
 				72E0D4AC2341298D00C47928 /* RSSArticleViewController.swift in Sources */,
@@ -466,6 +473,7 @@
 				72708DCC2334C7810091F6DD /* FeedCellViewModel.swift in Sources */,
 				72708DC82334C48F0091F6DD /* UIStackView+Extensions.swift in Sources */,
 				72E0D4AE2341299700C47928 /* RSSArticleViewModel.swift in Sources */,
+				72E0D4B723413F1D00C47928 /* BaseAlertedViewController.swift in Sources */,
 				72708DCA2334C5320091F6DD /* ConfigurableView.swift in Sources */,
 				72708DC42334C3AB0091F6DD /* InitializableView.swift in Sources */,
 				72708DC12334C2020091F6DD /* FeedCell.swift in Sources */,

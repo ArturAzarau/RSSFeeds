@@ -12,7 +12,7 @@ import RxCocoa
 import RxDataSources
 import FeedKit
 
-final class AllFeedsViewModel {
+final class AllFeedsViewModel: BaseAlertedViewModel {
 
     // MARK: - Inner Types
 
@@ -22,12 +22,7 @@ final class AllFeedsViewModel {
     private let dataFetcher = DataFetcher()
     private let viewModelsRelay = BehaviorRelay(value: [SectionOfCustomData]())
     private let dataSourceHolder = TableViewDataSourceHolder()
-    private let errorsRelay = PublishRelay<Error>()
     private(set) var rssItems = [RSSFeedItem]()
-
-    var errorsSignal: Signal<Error> {
-        return errorsRelay.asSignal()
-    }
 
     var viewModelsDriver: Driver<[SectionOfCustomData]> {
         return viewModelsRelay.asDriver()
@@ -53,8 +48,8 @@ final class AllFeedsViewModel {
             .map { [weak self] in $0.enumerated().compactMap { self?.createViewModels(from: $1, and: sources[$0]) } }
             .subscribe(onSuccess: { [weak self] viewModels in
                 self?.viewModelsRelay.accept(viewModels)
-            }) { error in
-                print(error)
+            }) { [weak self] error in
+                self?.errorsRelay.accept(error)
             }
             .disposed(by: disposeBag)
 
@@ -104,8 +99,8 @@ extension AllFeedsViewModel: RSSFeedSourcesDelegate {
                 var viewModels = self.viewModelsRelay.value
                 viewModels.append(viewModel)
                 self.viewModelsRelay.accept(viewModels)
-            }) { error in
-                print(error)
+            }) { [weak self] error in
+                self?.errorsRelay.accept(error)
             }
             .disposed(by: disposeBag)
     }

@@ -13,7 +13,7 @@ import SnapKit
 import RxDataSources
 import SafariServices
 
-final class AllFeedsViewController: BaseTableViewController<AllFeedsViewModel, AllFeedTableView> {
+final class AllFeedsViewController: BaseAlertedViewController<AllFeedsViewModel, AllFeedTableView> {
 
     // MARK: - Life Cycle
 
@@ -82,15 +82,6 @@ final class AllFeedsViewController: BaseTableViewController<AllFeedsViewModel, A
                     controller = SFSafariViewController(url: url)
                     self.navigationController?.pushViewController(controller, animated: true)
                 }
-            })
-            .disposed(by: disposeBag)
-    }
-
-    private func bindErrors() {
-        viewModel.errorsSignal
-            .emit(onNext: { [weak self] error in
-                let controller = AlertControllerFactory.createAlertWithError(error: error)
-                self?.present(controller, animated: true)
             })
             .disposed(by: disposeBag)
     }

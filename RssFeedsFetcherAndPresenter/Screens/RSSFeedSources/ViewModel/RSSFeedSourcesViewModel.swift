@@ -15,13 +15,12 @@ protocol RSSFeedSourcesDelegate: class {
     func sourceDidRemove(source: String)
 }
 
-final class RSSFeedSourcesViewModel {
+final class RSSFeedSourcesViewModel: BaseAlertedViewModel {
 
     // MARK: - Properties
 
     private let rssStorage: RSSFeedsStorage
     private let rssSourcesRelay = BehaviorRelay(value: [String]())
-    private let errorsRelay = PublishRelay<Error>()
     private weak var delegate: RSSFeedSourcesDelegate?
 
     var rssSourcesDriver: Driver<[String]> {
