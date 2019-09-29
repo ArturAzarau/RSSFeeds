@@ -18,10 +18,16 @@ final class AllFeedsViewModel {
 
     let storage = RSSFeedsStorage()
     private let disposeBag = DisposeBag()
+    private let parser = RSSParser()
     private let dataFetcher = DataFetcher()
     private let viewModelsRelay = BehaviorRelay(value: [SectionOfCustomData]())
     private let dataSourceHolder = TableViewDataSourceHolder()
+    private let errorsRelay = PublishRelay<Error>()
     private(set) var rssItems = [RSSFeedItem]()
+
+    var errorsSignal: Signal<Error> {
+        return errorsRelay.asSignal()
+    }
 
     var viewModelsDriver: Driver<[SectionOfCustomData]> {
         return viewModelsRelay.asDriver()
@@ -31,11 +37,20 @@ final class AllFeedsViewModel {
         return dataSourceHolder.tableViewDataSource
     }
 
-    func startFetchingRSSFeeds(for stringURL: String = "https://www.espn.com/espn/rss/news") {
+    var sections: [SectionOfCustomData] {
+        return viewModelsRelay.value
+    }
+
+    func startFetchingRSSFeeds() {
         let sources = storage.getRssSources()
 
-        let singles = sources.compactMap { URL(string: $0) }.map { initialFeedsDownload(for: $0) }
+        let singles = sources.compactMap { URL(string: $0) }
+            .map { parser.parseFeed(from: $0) }
         Single.zip(singles)
+            .do(onSuccess: { [weak self] itemsArray in
+                self?.rssItems = itemsArray.flatMap { $0 }
+            })
+            .map { [weak self] in $0.enumerated().compactMap { self?.createViewModels(from: $1, and: sources[$0]) } }
             .subscribe(onSuccess: { [weak self] viewModels in
                 self?.viewModelsRelay.accept(viewModels)
             }) { error in
@@ -45,28 +60,63 @@ final class AllFeedsViewModel {
 
     }
 
-    private func initialFeedsDownload(for url: URL) -> Single<SectionOfCustomData> {
-        let rssParser = RSSParser()
-        return rssParser.parseFeed(from: url)
-            .observeOn(MainScheduler.instance)
-            .do(onSuccess: { [weak self] items in
-                self?.rssItems = items
-            })
-            .map { [weak self] feedItems in
-                return feedItems.map { [weak self] item -> FeedCellViewModel in
-                    let driver: Driver<UIImage?>
-                    if let self = self, let image = item.image {
-                        driver = self.dataFetcher
-                            .fetchImage(for: image)
-                            .map { UIImage(data: $0) }
-                            .asDriver(onErrorJustReturn: nil)
-                    } else {
-                        driver = Single.just(nil).asDriver(onErrorJustReturn: nil)
-                    }
-
-                    return FeedCellViewModel(title: item.title, description: item.description, imageDriver: driver)
+    private func createViewModels(from feedItems: [RSSFeedItem], and urlString: String) -> SectionOfCustomData {
+        let items = feedItems
+            .map { [weak self] item -> FeedCellViewModel in
+                let driver: Driver<UIImage?>
+                if let self = self, let image = item.image {
+                    driver = self.dataFetcher
+                        .fetchImage(for: image)
+                        .map { UIImage(data: $0) }
+                        .asDriver(onErrorJustReturn: nil)
+                } else {
+                    driver = Single.just(nil).asDriver(onErrorJustReturn: nil)
                 }
+
+                return FeedCellViewModel(title: item.title, description: item.description, imageDriver: driver)
+        }
+
+        return SectionOfCustomData(header: urlString, items: items)
+    }
+}
+
+extension AllFeedsViewModel: RSSFeedSourcesDelegate {
+    func sourceDidAdd(source: String) {
+        guard let url = URL(string: source) else {
+            return
+        }
+
+        parser.parseFeed(from: url)
+            .do(onSuccess: { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                self.rssItems = self.rssItems + $0
+            })
+            .map { [weak self] in
+                return self?.createViewModels(from: $0, and: source) ?? nil
             }
-            .map { SectionOfCustomData(header: url.absoluteString, items: $0) }
+            .flatMap { Observable.from(optional: $0).asSingle() }
+            .subscribe(onSuccess: { [weak self] viewModel in
+                guard let self = self else {
+                    return
+                }
+                var viewModels = self.viewModelsRelay.value
+                viewModels.append(viewModel)
+                self.viewModelsRelay.accept(viewModels)
+            }) { error in
+                print(error)
+            }
+            .disposed(by: disposeBag)
+    }
+
+    func sourceDidRemove(source: String) {
+        var sources = viewModelsRelay.value
+        guard let sourceIndex = sources.firstIndex(where: { $0.header == source }) else {
+            return
+        }
+
+        sources.remove(at: sourceIndex)
+        viewModelsRelay.accept(sources)
     }
 }

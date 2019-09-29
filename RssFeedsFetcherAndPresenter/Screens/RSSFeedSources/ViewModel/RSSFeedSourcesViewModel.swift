@@ -10,6 +10,11 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
+protocol RSSFeedSourcesDelegate: class {
+    func sourceDidAdd(source: String)
+    func sourceDidRemove(source: String)
+}
+
 final class RSSFeedSourcesViewModel {
 
     // MARK: - Properties
@@ -17,6 +22,7 @@ final class RSSFeedSourcesViewModel {
     private let rssStorage: RSSFeedsStorage
     private let rssSourcesRelay = BehaviorRelay(value: [String]())
     private let errorsRelay = PublishRelay<Error>()
+    private weak var delegate: RSSFeedSourcesDelegate?
 
     var rssSourcesDriver: Driver<[String]> {
         return rssSourcesRelay.asDriver(onErrorDriveWith: .empty())
@@ -28,7 +34,8 @@ final class RSSFeedSourcesViewModel {
 
     // MARK: - Init
 
-    init(storage: RSSFeedsStorage) {
+    init(storage: RSSFeedsStorage, delegate: RSSFeedSourcesDelegate? = nil) {
+        self.delegate = delegate
         rssStorage = storage
         rssSourcesRelay.accept(rssStorage.getRssSources())
     }
@@ -38,6 +45,7 @@ final class RSSFeedSourcesViewModel {
     func addRssSource(_ rssSource: String) {
         do {
             let newSources = try rssStorage.saveRssSource(rssSource: rssSource)
+            delegate?.sourceDidAdd(source: rssSource)
             rssSourcesRelay.accept(newSources)
         } catch {
             errorsRelay.accept(error)
@@ -46,6 +54,7 @@ final class RSSFeedSourcesViewModel {
 
     func removeRssSource(with urlString: String) throws {
         let newSources = try rssStorage.deleteRssSorce(with: urlString)
+        delegate?.sourceDidRemove(source: urlString)
         rssSourcesRelay.accept(newSources)
     }
 

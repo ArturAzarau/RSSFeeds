@@ -45,12 +45,9 @@ final class AllFeedsViewController: BaseTableViewController<AllFeedsViewModel, A
 
     private var rightBarButtonTappedBinder: Binder<Void> {
         return Binder(self) { base, value in
-            base.viewModel.viewModelsDriver
-                .drive(onNext: { sections in
-                    let controller = RSSFeedSourcesViewController(viewModel: .init(storage: base.viewModel.storage))
-                    base.navigationController?.pushViewController(controller, animated: true)
-                })
-                .disposed(by: base.disposeBag)
+            let controller = RSSFeedSourcesViewController(viewModel: .init(storage: base.viewModel.storage,
+                                                                           delegate: base.viewModel))
+            base.navigationController?.pushViewController(controller, animated: true)
         }
     }
 
@@ -85,6 +82,15 @@ final class AllFeedsViewController: BaseTableViewController<AllFeedsViewModel, A
                     controller = SFSafariViewController(url: url)
                     self.navigationController?.pushViewController(controller, animated: true)
                 }
+            })
+            .disposed(by: disposeBag)
+    }
+
+    private func bindErrors() {
+        viewModel.errorsSignal
+            .emit(onNext: { [weak self] error in
+                let controller = AlertControllerFactory.createAlertWithError(error: error)
+                self?.present(controller, animated: true)
             })
             .disposed(by: disposeBag)
     }
