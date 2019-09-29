@@ -12,10 +12,16 @@ enum AlertControllerFactory {
     
     static func createTextFieldAlertWithCancel(title: String? = nil,
                                                message: String? = nil,
-                                               textFieldConfiguration: ((UITextField) -> ())? = nil) -> UIAlertController {
+                                               textFieldConfiguration: ((UITextField) -> ())? = nil,
+                                               okAction: @escaping (String) -> ()) -> UIAlertController {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addTextField(configurationHandler: textFieldConfiguration)
+        alertController.addAction(.init(title: "ОК", style: .default, handler: { _ in
+            if let text = alertController.textFields?.first?.text {
+                okAction(text)
+            }
+        }))
         alertController.addAction(.init(title: "Отмена", style: .cancel))
         
         return alertController
