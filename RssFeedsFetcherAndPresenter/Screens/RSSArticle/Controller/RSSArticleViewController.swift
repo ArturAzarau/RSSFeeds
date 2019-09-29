@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RSSArticleViewController: BaseViewController<RSSArticleViewModel, UITextView> {
+final class RSSArticleViewController: BaseViewModelViewController<RSSArticleViewModel, UITextView> {
 
     // MARK: - Life Cycle
 

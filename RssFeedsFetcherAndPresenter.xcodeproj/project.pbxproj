@@ -27,13 +27,17 @@
 		72708DF42337EB9F0091F6DD /* RSSFeedSourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DF32337EB9F0091F6DD /* RSSFeedSourcesViewController.swift */; };
 		72708DF72337EBD80091F6DD /* RSSFeedSourcesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DF62337EBD80091F6DD /* RSSFeedSourcesViewModel.swift */; };
 		72708DFB2337ED020091F6DD /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DFA2337ED020091F6DD /* BaseTableViewController.swift */; };
-		72708DFD2337F3130091F6DD /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DFC2337F3130091F6DD /* BaseTableViewCell.swift */; };
+		72708DFD2337F3130091F6DD /* BaseViewModelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72708DFC2337F3130091F6DD /* BaseViewModelTableViewCell.swift */; };
 		72E0D4A62341091500C47928 /* RSSFeedsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4A52341091500C47928 /* RSSFeedsStorage.swift */; };
 		72E0D4AC2341298D00C47928 /* RSSArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4AB2341298D00C47928 /* RSSArticleViewController.swift */; };
 		72E0D4AE2341299700C47928 /* RSSArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4AD2341299700C47928 /* RSSArticleViewModel.swift */; };
 		72E0D4B323412A3900C47928 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4B223412A3900C47928 /* BaseViewController.swift */; };
 		72E0D4B523413DFC00C47928 /* BaseAlertedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4B423413DFC00C47928 /* BaseAlertedViewModel.swift */; };
 		72E0D4B723413F1D00C47928 /* BaseAlertedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4B623413F1D00C47928 /* BaseAlertedViewController.swift */; };
+		72E0D4B92341552A00C47928 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4B82341552A00C47928 /* UIViewController+Extensions.swift */; };
+		72E0D4BE2341557900C47928 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4BD2341557900C47928 /* LoaderView.swift */; };
+		72E0D4C22341564200C47928 /* LoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4C12341564200C47928 /* LoaderViewController.swift */; };
+		72E0D4C42341566900C47928 /* BaseViewModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0D4C32341566900C47928 /* BaseViewModelViewController.swift */; };
 		EF0E94C78B9C9A3066981B99 /* Pods_RssFeedsFetcherAndPresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,13 +66,17 @@
 		72708DF32337EB9F0091F6DD /* RSSFeedSourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedSourcesViewController.swift; sourceTree = "<group>"; };
 		72708DF62337EBD80091F6DD /* RSSFeedSourcesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedSourcesViewModel.swift; sourceTree = "<group>"; };
 		72708DFA2337ED020091F6DD /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
-		72708DFC2337F3130091F6DD /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		72708DFC2337F3130091F6DD /* BaseViewModelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelTableViewCell.swift; sourceTree = "<group>"; };
 		72E0D4A52341091500C47928 /* RSSFeedsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedsStorage.swift; sourceTree = "<group>"; };
 		72E0D4AB2341298D00C47928 /* RSSArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSArticleViewController.swift; sourceTree = "<group>"; };
 		72E0D4AD2341299700C47928 /* RSSArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSArticleViewModel.swift; sourceTree = "<group>"; };
 		72E0D4B223412A3900C47928 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		72E0D4B423413DFC00C47928 /* BaseAlertedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAlertedViewModel.swift; sourceTree = "<group>"; };
 		72E0D4B623413F1D00C47928 /* BaseAlertedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAlertedViewController.swift; sourceTree = "<group>"; };
+		72E0D4B82341552A00C47928 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		72E0D4BD2341557900C47928 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
+		72E0D4C12341564200C47928 /* LoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderViewController.swift; sourceTree = "<group>"; };
+		72E0D4C32341566900C47928 /* BaseViewModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelViewController.swift; sourceTree = "<group>"; };
 		85169FFC1A1669BE278E0303 /* Pods_RssFeedsFetcherAndPresenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RssFeedsFetcherAndPresenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -190,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				72708DC72334C48F0091F6DD /* UIStackView+Extensions.swift */,
+				72E0D4B82341552A00C47928 /* UIViewController+Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -226,6 +235,7 @@
 		72708DEF2337EB5E0091F6DD /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				72E0D4BA2341555E00C47928 /* Loader */,
 				72708DBB2334BDD80091F6DD /* AllFeeds */,
 				72708DF92337ECF00091F6DD /* Base */,
 				72E0D4A72341294400C47928 /* RSSArticle */,
@@ -264,10 +274,11 @@
 			isa = PBXGroup;
 			children = (
 				72708DFA2337ED020091F6DD /* BaseTableViewController.swift */,
-				72708DFC2337F3130091F6DD /* BaseTableViewCell.swift */,
+				72708DFC2337F3130091F6DD /* BaseViewModelTableViewCell.swift */,
 				72E0D4B223412A3900C47928 /* BaseViewController.swift */,
 				72E0D4B423413DFC00C47928 /* BaseAlertedViewModel.swift */,
 				72E0D4B623413F1D00C47928 /* BaseAlertedViewController.swift */,
+				72E0D4C32341566900C47928 /* BaseViewModelViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -276,9 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				72E0D4A82341297600C47928 /* Controller */,
-				72E0D4AA2341298000C47928 /* Model */,
 				72E0D4A92341297C00C47928 /* ViewModel */,
-				72E0D4AF234129D300C47928 /* Views */,
 			);
 			path = RSSArticle;
 			sourceTree = "<group>";
@@ -299,16 +308,27 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		72E0D4AA2341298000C47928 /* Model */ = {
+		72E0D4BA2341555E00C47928 /* Loader */ = {
 			isa = PBXGroup;
 			children = (
+				72E0D4BC2341557100C47928 /* Views */,
+				72E0D4BB2341556C00C47928 /* Controller */,
 			);
-			path = Model;
+			path = Loader;
 			sourceTree = "<group>";
 		};
-		72E0D4AF234129D300C47928 /* Views */ = {
+		72E0D4BB2341556C00C47928 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				72E0D4C12341564200C47928 /* LoaderViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		72E0D4BC2341557100C47928 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				72E0D4BD2341557900C47928 /* LoaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -454,20 +474,24 @@
 			files = (
 				72708DFB2337ED020091F6DD /* BaseTableViewController.swift in Sources */,
 				72708DDB2334D9C80091F6DD /* AllFeedsViewModel.swift in Sources */,
+				72E0D4B92341552A00C47928 /* UIViewController+Extensions.swift in Sources */,
 				72708DE82337DCB00091F6DD /* AlertControllerFactory.swift in Sources */,
-				72708DFD2337F3130091F6DD /* BaseTableViewCell.swift in Sources */,
+				72708DFD2337F3130091F6DD /* BaseViewModelTableViewCell.swift in Sources */,
+				72E0D4C42341566900C47928 /* BaseViewModelViewController.swift in Sources */,
 				72708DAA2334BCA00091F6DD /* AllFeedsViewController.swift in Sources */,
 				72E0D4B523413DFC00C47928 /* BaseAlertedViewModel.swift in Sources */,
 				72E0D4B323412A3900C47928 /* BaseViewController.swift in Sources */,
 				72708DEE2337E9330091F6DD /* SectionOfCustomData.swift in Sources */,
 				72E0D4AC2341298D00C47928 /* RSSArticleViewController.swift in Sources */,
 				72708DA82334BCA00091F6DD /* AppDelegate.swift in Sources */,
+				72E0D4C22341564200C47928 /* LoaderViewController.swift in Sources */,
 				72708DF42337EB9F0091F6DD /* RSSFeedSourcesViewController.swift in Sources */,
 				72708DD52334D7290091F6DD /* DataFetcher.swift in Sources */,
 				72708DE02334DCB40091F6DD /* RSSParser.swift in Sources */,
 				72708DEC2337E7E50091F6DD /* TableViewDataSourceHolder.swift in Sources */,
 				72708DE42337CDD00091F6DD /* AllFeedTableView.swift in Sources */,
 				72E0D4A62341091500C47928 /* RSSFeedsStorage.swift in Sources */,
+				72E0D4BE2341557900C47928 /* LoaderView.swift in Sources */,
 				72708DF72337EBD80091F6DD /* RSSFeedSourcesViewModel.swift in Sources */,
 				72708DD72334D8710091F6DD /* RequestBuilder.swift in Sources */,
 				72708DCC2334C7810091F6DD /* FeedCellViewModel.swift in Sources */,

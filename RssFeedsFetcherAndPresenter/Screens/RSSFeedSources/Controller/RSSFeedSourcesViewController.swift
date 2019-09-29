@@ -35,16 +35,10 @@ final class RSSFeedSourcesViewController: BaseTableViewController<RSSFeedSources
     private func bindRightBarButtonItem() {
         navigationItem.rightBarButtonItem?.rx.tap
             .subscribe(onNext: { [weak self] in
-                let alertController = AlertControllerFactory.createTextFieldAlertWithCancel(title: "Введите название ресурса с RSS",
-                                                                                            textFieldConfiguration: {
-                                                                                                $0.text = "https://grantland.com/features/feed/"
-                })
-
-                alertController.addAction(.init(title: "ОК", style: .default, handler: { [weak self] _ in
-                    if let text = alertController.textFields?.first?.text {
-                        self?.viewModel.addRssSource(text)
-                    }
-                }))
+                let alertController = AlertControllerFactory.createTextFieldAlertWithCancel(title: "Введите название ресурса с RSS")
+                { [weak self] in
+                    self?.viewModel.addRssSource($0)
+                }
 
                 self?.present(alertController, animated: true)
             })
@@ -59,12 +53,7 @@ final class RSSFeedSourcesViewController: BaseTableViewController<RSSFeedSources
             .disposed(by: disposeBag)
 
         customView.rx.modelDeleted(String.self).subscribe(onNext: { [weak self] in
-            do {
-                try self?.viewModel.removeRssSource(with: $0)
-            } catch {
-                print(error)
-            }
-            print($0)
+            self?.viewModel.removeRssSource(with: $0)
         })
         .disposed(by: disposeBag)
 
