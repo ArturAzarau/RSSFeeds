@@ -14,7 +14,7 @@ import FeedKit
 
 final class AllFeedsViewModel: BaseAlertedViewModel {
 
-    // MARK: - Inner Types
+    // MARK: - Properties
 
     let storage = RSSFeedsStorage()
     private let disposeBag = DisposeBag()
@@ -36,6 +36,8 @@ final class AllFeedsViewModel: BaseAlertedViewModel {
         return viewModelsRelay.value
     }
 
+    // MARK: - Internal
+
     func startFetchingRSSFeeds() {
         let sources = storage.getRssSources()
 
@@ -54,6 +56,34 @@ final class AllFeedsViewModel: BaseAlertedViewModel {
             .disposed(by: disposeBag)
 
     }
+
+    func createHTMLPage(for source: String?) -> NSAttributedString? {
+        let rssItem = rssItems.first { $0.title == source }
+
+        guard let content = rssItem?.content?.contentEncoded,
+            let data = content.data(using: .utf8, allowLossyConversion: true) else {
+                return nil
+        }
+        do {
+            return  try NSAttributedString(data: data,
+                                           options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html],
+                                           documentAttributes: nil)
+        } catch {
+            errorsRelay.accept(error)
+        }
+
+        return nil
+    }
+
+    func getLinkForSource(source: String?) -> String? {
+        guard let link = rssItems.first(where: { $0.title == source })?.link else {
+            return nil
+        }
+
+        return link
+    }
+
+    // MARK: - Private
 
     private func createViewModels(from feedItems: [RSSFeedItem], and urlString: String) -> SectionOfCustomData {
         let items = feedItems

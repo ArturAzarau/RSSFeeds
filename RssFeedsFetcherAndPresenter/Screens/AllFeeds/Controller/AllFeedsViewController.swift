@@ -59,32 +59,25 @@ final class AllFeedsViewController: BaseAlertedViewController<AllFeedsViewModel,
         customView.rx.modelSelected(FeedCellViewModel.self)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] item in
+                defer {
+                    self?.loaderVC.remove()
+                }
+
                 guard let self = self else {
                     return
                 }
 
-                let rssItem = self.viewModel.rssItems.first { $0.title == item.title }
-
                 let controller: UIViewController
 
-                if let content = rssItem?.content?.contentEncoded, let data = content.data(using: .utf8, allowLossyConversion: true) {
-                    let title = rssItem?.title
-                    do {
-                        self.navigationController?.add(self.loaderVC)
-                        let attributtedString = try NSAttributedString(data: data,
-                                                                       options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html],
-                                                                       documentAttributes: nil)
-
-                        controller = RSSArticleViewController(viewModel: .init(title: title, text: attributtedString))
-                        self.loaderVC.remove()
-                        self.navigationController?.pushViewController(controller, animated: true)
-                    } catch {
-                        print(error)
-                    }
+                self.navigationController?.add(self.loaderVC)
+                if let htmlText = self.viewModel.createHTMLPage(for: item.title) {
+                    controller = RSSArticleViewController(viewModel: .init(title: item.title, text: htmlText))
+                    self.navigationController?.pushViewController(controller, animated: true)
                 } else {
-                    guard let link = rssItem?.link, let url = URL(string: link) else {
+                    guard let link = self.viewModel.getLinkForSource(source: item.title), let url = URL(string: link) else {
                         return
                     }
+
                     controller = SFSafariViewController(url: url)
                     self.navigationController?.pushViewController(controller, animated: true)
                 }
