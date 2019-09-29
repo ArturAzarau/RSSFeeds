@@ -63,21 +63,28 @@ final class AllFeedsViewController: BaseTableViewController<AllFeedsViewModel, A
                 }
 
                 let rssItem = self.viewModel.rssItems.first { $0.title == item.title }
-                let title = rssItem?.title
-                let content = rssItem?.content?.contentEncoded
 
                 let controller: UIViewController
 
-                if content == nil {
+                if let content = rssItem?.content?.contentEncoded, let data = content.data(using: .utf8, allowLossyConversion: true) {
+                    let title = rssItem?.title
+                    do {
+                        let attributtedString = try NSAttributedString(data: data,
+                                                                       options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html],
+                                                                       documentAttributes: nil)
+
+                        controller = RSSArticleViewController(viewModel: .init(title: title, text: attributtedString))
+                        self.navigationController?.pushViewController(controller, animated: true)
+                    } catch {
+                        print(error)
+                    }
+                } else {
                     guard let link = rssItem?.link, let url = URL(string: link) else {
                         return
                     }
                     controller = SFSafariViewController(url: url)
-                } else {
-                    controller = RSSArticleViewController(viewModel: .init(title: title, text: content))
+                    self.navigationController?.pushViewController(controller, animated: true)
                 }
-
-                self.navigationController?.pushViewController(controller, animated: true)
             })
             .disposed(by: disposeBag)
     }
